@@ -1,15 +1,18 @@
 require('dotenv').config();
 const express = require('express');
 const connect = require('./config/database');
-const app = express();
-const accountRouter = require('./routes/account.route');
 
-// app.set('views', '/views');
+const accountRouter = require('./routes/account.route');
+const warehouseRouter = require('./routes/warehouse.route');
+
+
+const app = express();
 app.use(express.json()) 
 app.use(express.urlencoded({ extended: true })) 
 
 app.use(express.static('views'));
 app.use('/account', accountRouter);
+app.use('/warehouse', warehouseRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/index.html');

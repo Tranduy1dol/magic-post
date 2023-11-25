@@ -1,16 +1,13 @@
-const account = require("../model/account.model");
+const warehouse = require("../model/warehouse.model");
 
 module.exports = {
-    createAccount: (data, callback) => {
-        const Account = new account({
-            name: data.name, 
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            role: data.role,
-            userName: data.user_name
+    createWarehouse: (data, callback) => {
+        const Warehouse = new warehouse({
+            name: data.name,
+            address: data.address,
+            managerID: data.manager_id
         })
-        Account.save()
+        Warehouse.save()
             .then((result) => {
                 return callback(null, result);
             })
@@ -18,8 +15,8 @@ module.exports = {
                 return callback(error);
             })
     },
-    getAccount: (callback) => {
-        account.find({})
+    getWarehouse: (callback) => {
+        warehouse.find({})
             .then((result) => {
                 return callback(null, result);
             })
@@ -27,8 +24,8 @@ module.exports = {
                 return callback(error);
             })
     },
-    getAccountByUsername: (username, callback) => {
-        account.find({userName: username})
+    getWarehouseByAddress: (address, callback) => {
+        warehouse.find({address: address})
             .then((result) => {
                 return callback(null, result);
             })
@@ -36,13 +33,13 @@ module.exports = {
                 return callback(error);
             })
     },
-    updateAccount: (data, callback) => {
-        account.updateOne({
-            name: data.name, 
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            userName: data.user_name
+    getWarehouseByName: () => {},
+    getWarehouseByManager: () => {},
+    updateWarehouse: (data, callback) => {
+        warehouse.updateOne({
+            name: data.name,
+            address: data.address,
+            managerID: data.manager_id
         })
         .then((result) => {
             return callback(null, result);
@@ -51,13 +48,13 @@ module.exports = {
             return callback(error);
         })
     },
-    deleteAccount: (data, callback) => {
-        account.deleteOne({ name: data.name })
+    deleteWarehouse: (data, callback) => {
+        warehouse.deleteOne({ name: data.name })
             .then((result) => {
                 return callback(null, result);
             })
             .catch((error) => {
                 return callback(error);
             })
-    },
+    }
 }

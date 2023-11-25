@@ -9,10 +9,8 @@ const { sign } = require('jsonwebtoken');
 
 module.exports = {
     createAccount: (req, res) => {
-        console.log(req);
-        const {password, name, user_name, email, phone} = req.body;
+        const body = req.body;
         const salt = genSaltSync(10);
-        console.log(password, name, user_name, email, phone);
         body.password = hashSync(body.password, salt);
         createAccount(body, (err, results) => {
             if(err) {
