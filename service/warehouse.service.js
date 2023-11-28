@@ -24,8 +24,15 @@ module.exports = {
                 return callback(error);
             })
     },
-    getWarehouseByAddress: (address, callback) => {
-        warehouse.find({address: address})
+    getWarehouseByInfor: (data, callback) => {
+        const filter = {
+            $or: [
+                {address: data.address},
+                {name: data.name},
+                {managerID: data.manager_id}
+            ]
+        };
+        warehouse.find(filter)
             .then((result) => {
                 return callback(null, result);
             })
@@ -33,14 +40,22 @@ module.exports = {
                 return callback(error);
             })
     },
-    getWarehouseByName: () => {},
-    getWarehouseByManager: () => {},
     updateWarehouse: (data, callback) => {
-        warehouse.updateOne({
-            name: data.name,
-            address: data.address,
-            managerID: data.manager_id
-        })
+        const filter = {
+            $or: [
+                {name: data.name},
+                {address: data.address},
+                {managerID: data.manager_id}
+            ]
+        };
+        const update = {
+            $set: {
+                name: data.new_name,
+                address: data.address,
+                managerID: data.new_manager
+            }
+        };
+        warehouse.updateOne(filter, update)
         .then((result) => {
             return callback(null, result);
         })

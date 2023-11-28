@@ -5,6 +5,6 @@ const warehouseSchema = new mongoose.Schema({
     name: String,
     address: String,
     managerID: String,
-})
+});
 
 module.exports = mongoose.model('warehouse', warehouseSchema);

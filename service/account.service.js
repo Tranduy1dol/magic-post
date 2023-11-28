@@ -27,8 +27,15 @@ module.exports = {
                 return callback(error);
             })
     },
-    getAccountByUsername: (username, callback) => {
-        account.find({userName: username})
+    getAccountByUsername: (data, callback) => {
+        const filter = {
+            $or: [
+                {email: data.email},
+                {userName: data.user_name},
+                {phone: data.phone}
+            ]
+        };
+        account.find(filter)
             .then((result) => {
                 return callback(null, result);
             })
@@ -37,13 +44,23 @@ module.exports = {
             })
     },
     updateAccount: (data, callback) => {
-        account.updateOne({
-            name: data.name, 
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            userName: data.user_name
-        })
+        const filter = {
+            $or: [
+                {name: data.name},
+                {email: data.email},
+                {userName: data.user_name},
+                {phone: data.phone}
+            ]
+        };
+        const update = {
+            $set: {
+                name: data.new_name,
+                email: data.new_email,
+                userName: data.new_user_name,
+                phone: data.new_phone
+            }
+        };
+        account.updateOne(filter, update)
         .then((result) => {
             return callback(null, result);
         })
@@ -51,8 +68,17 @@ module.exports = {
             return callback(error);
         })
     },
+    updatePassword: () => {},
     deleteAccount: (data, callback) => {
-        account.deleteOne({ name: data.name })
+        const filter = {
+            $or: [
+                {name: data.name},
+                {email: data.email},
+                {userName: data.user_name},
+                {phone: data.phone}
+            ]
+        }; 
+        account.deleteOne(filter)
             .then((result) => {
                 return callback(null, result);
             })

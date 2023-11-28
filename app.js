@@ -4,7 +4,7 @@ const connect = require('./config/database');
 
 const accountRouter = require('./routes/account.route');
 const warehouseRouter = require('./routes/warehouse.route');
-
+const officeRouter = require('./routes/office.route');
 
 const app = express();
 app.use(express.json()) 
@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('views'));
 app.use('/account', accountRouter);
 app.use('/warehouse', warehouseRouter);
+app.use('/office', officeRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/index.html');

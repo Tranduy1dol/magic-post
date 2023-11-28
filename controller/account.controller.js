@@ -41,7 +41,7 @@ module.exports = {
     updateAccount: (req, res) => {
         const body = req.body;
         const salt = genSaltSync(10);
-        body.password = hashSync(body.password, salt);
+        //body.new_password = hashSync(body.new_password, salt);
         updateAccount(body, (err, results) => {
             if(err) {
                 console.log(err);
@@ -80,7 +80,7 @@ module.exports = {
     },
     login: (req, res) => {
         const body = req.body;
-        getAccountByUsername(body.email, (err, results) => {
+        getAccountByUsername(body, (err, results) => {
             if(err) {
                 console.log(err);
                 return;
@@ -91,15 +91,15 @@ module.exports = {
                     data: "invalid username or password"
                 });
             }
-            const result = compareSync(body.password, results.password);
+            const result = compareSync(body.password, results[0].password);
             if(result) {
                 results.password = undefined;
                 const secret = process.env.SECRET_TOKEN;
-                const jsontoken = sign({result: results}, secret, { expriresIn: "1h" });
+                //const jsontoken = sign({result: results}, secret, { expriresIn: '1h' });
                 return res.json({
                     success: 1,
-                    message: "login succesfully",
-                    token: jsontoken
+                    message: "login successfully",
+                    //token: jsontoken
                 });
             } else {
                 return res.json({
