@@ -75,7 +75,7 @@ module.exports = {
                 return callback(error)
             })
     },
-    deleteOffice: (data, callback) => {
+    deleteOrder: (data, callback) => {
         const filter = {
             $or: [
                 {sender: data.sender},
