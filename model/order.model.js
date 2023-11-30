@@ -6,9 +6,9 @@ const orderSchema = new mongoose.Schema({
     senderAddress: String,
     receiverAddress: String,
     orderLine: String,
-    price: Int32,
-    weight: float,
-    sendTime: DateTime
+    price: Number,
+    weight: Number,
+    sendTime: Date
 });
 
 module.exports = mongoose.model('order', orderSchema);

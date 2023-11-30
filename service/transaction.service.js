@@ -1,0 +1,1 @@
+const trans = require('../model/transaction.model')
