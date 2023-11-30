@@ -1,90 +1,94 @@
-const { createOrder,
-        getOrder,
-        getOrderByInfor,
-        updateOrder,
-        deleteOrder,
-        printOrder
-}   = require("../service/order.service");
+const { createTrans,
+        getTrans,
+        getTransByInfor,
+        updateTrans,
+        deleteTrans
+    }   = require('../service/transaction.service');
 
 module.exports = {
-    createOrder: (req, res) => {
+    createTrans: (req, res) => {
         const body = req.body;
-        createOrder(body, (err, results) => {
+        createTrans(body, (err, results) => {
             if(err) {
                 console.log(err);
                 return res.status(500).json({
                     success: 0,
-                    message: "database connect error"
+                    message: "database connect failed"
                 });
             }
             return res.status(200).json({
                 success: 1,
                 data: results
             });
-        });
-    },
-    getOrder: (req, res) => {
-        getOrder((err, results) => {
-            if(err) {
-                console.log(err);
-                return;
-            }
-            return res.json({
-                success: 1,
-                data: results
-            });
-        });
-    },
-    getOrderByInfor: (req, res) => {
-        const body = req.body;
-        getOrderByInfor(body, (err, results) => {
-            if(err) {
-                console.log(err);
-                return;
-            }
-            return res.json({
-                success: 1,
-                data: results
-            });
-        });
-    },
-    updateOrder: (req, res) => {
-        const body = req.body;
-        updateOrder(body, (err, results) => {
-            if(err) {
-                console.log(err);
-                return;
-            }
-            if(!results) {
-                return res.json({
-                    success: 0,
-                    message: "failed to update order"
-                });
-            }
-            return res.json({
-                success: 1,
-                data: results
-            });
-        });
-    },
-    deleteOrder: (req, res) => {
-        const data = req.body;
-        deleteOffice(data, (err, results) => {
-            if(err) {
-                console.log(err);
-                return;
-            }
-            if(!results) {
-                return res.json({
-                    success: 0,
-                    message: "order not found"
-                });
-            } 
-            return res.json({
-                success: 1,
-                message: "order delete successfully"
-            });
         })
     },
-    printOrder: () => {}
+    getTrans: (req, res) => {
+        getTrans((err, results) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getTransByInfor: (req, res) => {
+        const body = req.body;
+        getTransByInfor(body, (err, results) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            if(!results) {
+                return res.json({
+                    success: 0,
+                    message: "record not found"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    updateTrans: (req, res) => {
+        const body = req.body;
+        updateTrans(body, (err, results) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            if(!results) {
+                return res.json({
+                    success: 0,
+                    message: "failed to update transaction"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    deleteTrans: (req, res) => {
+        const data = req.body;
+        deleteTrans(data, (err, results) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            if(!results) {
+                return res.json({
+                    success: 0,
+                    message: "record not found"
+                });
+            }
+            return res.json({
+                success: 1,
+                message: "transaction delete successfully"
+            });
+        });
+    }
 }
