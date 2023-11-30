@@ -3,10 +3,10 @@ const order = require("../model/order.model");
 module.exports = {
     createOrder: (data, callback) => {
         const Order = new order({
-            senderName: data.sender,
-            receiverName: data.receiver,
-            senderAddress: data.sender_address,
-            receiverAddress: data.receiver_address,
+            sender: data.sender,
+            receiver: data.receiver,
+            sendAddress: data.send_address,
+            receiveAddress: data.receive_address,
             orderLine: data.line,
             price: data.price,
             weight: data.weight,
@@ -25,12 +25,72 @@ module.exports = {
             .then((results) => {
                 return callback(null, results);
             })
-            .catch((erorr) => {
+            .catch((error) => {
                 return callback(error);
             });
     },
-    getOrderByInfor: () => {},
+    getOrderByInfor: (data, callback) => {
+        const filter = {
+            $or: [
+                {send: data.sender},
+                {receive: data.receiver},
+                {sendAddress: data.send_address},
+                {receiveAddress: data.receive_address},
+                {sendTime: data.time}
+            ]
+        };
+        order.find(filter)
+            .then((results) => {
+                return callback(null, results);
+            })
+            .catch((error) => {
+                return callback(error);
+            })
+    },
     printOrder: () => {},
-    updateOrder: () => {},
-    deleteOffice: () => {}
+    updateOrder: (data, callback) => {
+        const filter = {
+            $or: [
+                {sender: data.sender},
+                {receiver: data.receiver},
+                {sendAddress: data.send_address},
+                {receiveAddress: data.receive_address},
+                {sendTime: data.time}
+            ]
+        };
+        const update = {
+            $set: {
+                sender: data.new_sender,
+                receiver: data.new_receiver,
+                sendAddress: data.new_send_address,
+                receiveAddress: data.new_receive_address,
+                sendTime: data.new_time
+            }
+        };
+        order.updateOne(filter, update) 
+            .then((results) => {
+                return callback(null, results);
+            })
+            .catch((error) => {
+                return callback(error)
+            })
+    },
+    deleteOffice: (data, callback) => {
+        const filter = {
+            $or: [
+                {sender: data.sender},
+                {receiver: data.receiver},
+                {sendAddress: data.send_address},
+                {receiveAddress: data.receive_address},
+                {sendTime: data.time}
+            ]
+        };
+        order.deleteOne(filter)
+            .then((results) => {
+                return callback(null, results);
+            })
+            .catch((error) => {
+                return callback(error);
+            })
+    } 
 }
