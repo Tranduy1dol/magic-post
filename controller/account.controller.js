@@ -93,13 +93,13 @@ module.exports = {
             }
             const result = compareSync(body.password, results[0].password);
             if(result) {
-                results.password = undefined;
+                results[0].password = undefined;
                 const secret = process.env.SECRET_TOKEN;
-                //const jsontoken = sign({result: results}, secret, { expriresIn: '1h' });
+                const jsontoken = sign({result: results}, secret, { expiresIn: '1h' });
                 return res.json({
                     success: 1,
                     message: "login successfully",
-                    //token: jsontoken
+                    token: jsontoken
                 });
             } else {
                 return res.json({
