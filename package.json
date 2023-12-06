@@ -25,7 +25,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
-    "node": "^21.1.0"
+    "node": "^21.1.0",
+    "redis": "^4.6.11"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

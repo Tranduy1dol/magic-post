@@ -1,14 +1,35 @@
 const mongoose = require('mongoose');
 
 const accountSchema = new mongoose.Schema({
-    //_id: {type: mongoose.Schema.Types.ObjectId},
-    name: String,
-    email: String, 
-    password: String,
-    phone: String, 
-    userName: String, 
-    role: String,
-    pointID: {type: mongoose.Schema.Types.ObjectId, ref: ''},
+    name: {   
+        type: String,
+        require: true
+    },
+    email: { 
+        type: String,
+        require: true
+    }, 
+    password: { 
+        type: String,
+        require: true
+    },
+    phone: { 
+        type: String,
+        require: true
+    }, 
+    userName: { 
+        type: String,
+        require: true
+    }, 
+    role: { 
+        type: String,
+        require: true,
+        default: "customer"
+    },
+    pointID: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'office'
+    },
 })
 
 module.exports = mongoose.model('account', accountSchema);
