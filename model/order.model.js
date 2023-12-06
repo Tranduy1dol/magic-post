@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    senderName: String,
-    receiverName: String,
-    senderAddress: String,
-    receiverAddress: String,
+    senderID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
+    },
+    receiverID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
+    },
     orderLine: String,
     price: Number,
     weight: Number,
