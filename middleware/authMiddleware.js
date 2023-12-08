@@ -6,9 +6,17 @@ module.exports = {
                 next();
             } else {
                 res.status(403).json({
-                    error: 'you dont have permission to accsess this data'
+                    error: 'you do not have permission to access this data'
                 });
             }
         }
+    },
+    checkAccess: () => {
+        
     }
 }
+
+//accessCheck -> 
+// if director -> 
+// if manager -> 
+// if employee ->

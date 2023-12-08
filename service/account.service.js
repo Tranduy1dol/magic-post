@@ -61,12 +61,12 @@ module.exports = {
             }
         };
         account.updateOne(filter, update)
-        .then((result) => {
-            return callback(null, result);
-        })
-        .catch((error) => {
-            return callback(error);
-        })
+            .then((result) => {
+                return callback(null, result);
+            })
+            .catch((error) => {
+                return callback(error);
+            })
     },
     updatePassword: () => {},
     deleteAccount: (data, callback) => {
@@ -84,6 +84,6 @@ module.exports = {
             })
             .catch((error) => {
                 return callback(error);
-            })
+            });
     },
 }

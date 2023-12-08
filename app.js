@@ -29,8 +29,10 @@ app.listen(process.env.APP_PORT, function() {
 
 
 
-//xây dựng api
-//xây dựng CRUD cho các phân quyền khác nhau
-//làm chức năng login phân quyền bằng middleware và mongoDB
-//test chức năng và xử lý lỗi (handle error)
+//build api -> almost done
+//build CRUD -> done
+//build analyst
+//build middleware
+//test feature and handle error
+//connect with front-end
 //deploy

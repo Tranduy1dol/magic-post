@@ -3,10 +3,8 @@ const order = require("../model/order.model");
 module.exports = {
     createOrder: (data, callback) => {
         const Order = new order({
-            sender: data.sender,
-            receiver: data.receiver,
-            sendAddress: data.send_address,
-            receiveAddress: data.receive_address,
+            senderID: data.sender,
+            receiverID: data.receiver,
             orderLine: data.line,
             price: data.price,
             weight: data.weight,
@@ -34,8 +32,6 @@ module.exports = {
             $or: [
                 {send: data.sender},
                 {receive: data.receiver},
-                {sendAddress: data.send_address},
-                {receiveAddress: data.receive_address},
                 {sendTime: data.time}
             ]
         };
