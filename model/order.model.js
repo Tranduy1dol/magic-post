@@ -9,10 +9,16 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'customer'
     },
-    orderLine: String,
+    description: String,
     price: Number,
     weight: Number,
-    sendTime: Date
+    sendTime: Date,
+
+    //status: sending, failed, succeeded, returning
+    status: {
+        type: String,
+        default: 'sending'
+    }
 });
 
 module.exports = mongoose.model('order', orderSchema);

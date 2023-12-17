@@ -73,3 +73,5 @@ module.exports = {
             })
     },
 }
+
+//add feature statistical received, sended order of all/one warehouse

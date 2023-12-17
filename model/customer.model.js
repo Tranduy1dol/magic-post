@@ -7,10 +7,11 @@ const customerSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        require: String
+        require: true
     },
     officeID: {
         type: mongoose.Schema.Types.ObjectId,
+        require: true,
         ref: 'office'
     },
     phone: {

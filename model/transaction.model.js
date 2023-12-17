@@ -9,11 +9,13 @@ const transactionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'warehouse'
     },
-    office: {
+    target: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'office'
+        ref: 'warehouse',
+        default: ''
     },
     timeStamp: Date,
+    //status: storing, transporting, office
     status: String
 });
 

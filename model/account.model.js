@@ -17,19 +17,12 @@ const accountSchema = new mongoose.Schema({
         type: String,
         require: true
     }, 
-    userName: { 
-        type: String,
-        require: true
-    }, 
+
+    //role: director, manager, employee
     role: { 
         type: String,
         require: true,
-        default: "customer"
-    },
-    pointID: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'office'
-    },
+    }
 })
 
 module.exports = mongoose.model('account', accountSchema);

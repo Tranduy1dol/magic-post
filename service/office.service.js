@@ -1,6 +1,7 @@
 const office = require("../model/office.model");
 
 module.export = {
+    //create office by name, address and link to an manager, warehouse -> director
     createOffice: (data, callback) => {
         const Office = new office({
             name: data.name,
@@ -16,6 +17,8 @@ module.export = {
                 return callback(error);
             })
     },
+
+    //show all office -> director
     getOffice: (callback) => {
         office.find({})
             .then((results) => {
@@ -25,6 +28,8 @@ module.export = {
                 return callback(error);
             });
     },
+
+    //search office by name, address, manager, warehouse -> director
     getOfficeByInfor: (data, callback) => {
         const filter = {
             $or: [
@@ -42,6 +47,8 @@ module.export = {
                 return callback(error);
             });
     },
+
+    //update office information -> director
     updateOffice: (data, callback) => {
         const filter = {
             $or: [
@@ -68,6 +75,8 @@ module.export = {
             })
 
     },
+
+    //delete office -> director
     deleteOffice: (data, callback) => {
         const filter = {
             $or: [
@@ -84,5 +93,5 @@ module.export = {
             .catch((error) => {
                 return callback(error);
             })
-    }
+    },
 }

@@ -1,6 +1,8 @@
 const customer = require('../model/customer.model');
 
 module.exports = {
+
+    //create customer by name, address, phone number and link to an office -> employee
     createCustomer: (data, callback) => {
         const Customer = new customer({
             name: data.name,
@@ -16,6 +18,8 @@ module.exports = {
                 return callback(error);
             });
     },
+
+    //search customer by name, address, phone, officeID -> employee
     getCustomerByInfor: (data, callback) => {
         const filter = {
             $or: [
@@ -33,6 +37,8 @@ module.exports = {
                 return callback(error);
             });
     },
+
+    //show all customer -> employee, manager
     getCustomer: (callback) => {
         customer.find({})
             .then((result) => {
@@ -42,6 +48,8 @@ module.exports = {
                 return callback(error);
             });
     },
+
+    //update customer information -> employee
     updateCustomer: (data, callback) => {
         const filter = {
             $or: [
@@ -67,6 +75,8 @@ module.exports = {
                 return callback(error);
             })
     }, 
+
+    //delete customer with name, address, phone -> employee
     deleteCustomer: (data, callback) => {
         const filter = {
             $or: [

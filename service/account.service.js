@@ -1,6 +1,7 @@
 const account = require("../model/account.model");
 
 module.exports = {
+    //create account with name, email, password, phone number and role -> director, manager
     createAccount: (data, callback) => {
         const Account = new account({
             name: data.name, 
@@ -8,7 +9,6 @@ module.exports = {
             password: data.password,
             phone: data.phone,
             role: data.role,
-            userName: data.user_name
         })
         Account.save()
             .then((result) => {
@@ -18,6 +18,8 @@ module.exports = {
                 return callback(error);
             })
     },
+
+    //show all account -> director, manager
     getAccount: (callback) => {
         account.find({})
             .then((result) => {
@@ -27,11 +29,12 @@ module.exports = {
                 return callback(error);
             })
     },
+
+    //show account by email, phone number -> director, manager
     getAccountByUsername: (data, callback) => {
         const filter = {
             $or: [
                 {email: data.email},
-                {userName: data.user_name},
                 {phone: data.phone}
             ]
         };
@@ -43,12 +46,13 @@ module.exports = {
                 return callback(error);
             })
     },
+
+    //update account information -> director, manager
     updateAccount: (data, callback) => {
         const filter = {
             $or: [
                 {name: data.name},
                 {email: data.email},
-                {userName: data.user_name},
                 {phone: data.phone}
             ]
         };
@@ -56,7 +60,6 @@ module.exports = {
             $set: {
                 name: data.new_name,
                 email: data.new_email,
-                userName: data.new_user_name,
                 phone: data.new_phone
             }
         };
@@ -68,13 +71,16 @@ module.exports = {
                 return callback(error);
             })
     },
-    updatePassword: () => {},
+
+    //change password -> director, manager, employee
+    changePassword: () => {},
+
+    //delete password by email, name, phone number -> director, manager
     deleteAccount: (data, callback) => {
         const filter = {
             $or: [
                 {name: data.name},
                 {email: data.email},
-                {userName: data.user_name},
                 {phone: data.phone}
             ]
         }; 

@@ -7,6 +7,7 @@ const warehouseRouter = require('./routes/warehouse.route');
 const officeRouter = require('./routes/office.route');
 const orderRouter = require('./routes/order.route');
 const transRouter = require('./routes/transaction.route');
+const customerRouter = require('./routes/customer.route');
 const app = express();
 
 app.use(express.json()) 
@@ -18,6 +19,7 @@ app.use('/warehouse', warehouseRouter);
 app.use('/office', officeRouter);
 app.use('/order', orderRouter);
 app.use('/transaction', transRouter);
+app.use('/customer', customerRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/index.html');
