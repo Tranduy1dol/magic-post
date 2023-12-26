@@ -1,8 +1,9 @@
 const { createAccount,
-        getAccount,
+        getManagerAccount,
         updateAccount,
         deleteAccount,
-        getAccountByUsername
+        getAccountByUsername,
+        getEmployeeAccount
     } = require('../service/account.service');
 const { genSaltSync, hashSync, compareSync } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
@@ -26,8 +27,8 @@ module.exports = {
             });
         });
     },
-    getAccount: (req, res) => {
-        getAccount((err, results) => {
+    getManagerAccount: (req, res) => {
+        getManagerAccount((err, results) => {
             if(err) {
                 console.log(err);
                 return;
@@ -37,6 +38,20 @@ module.exports = {
                 data: results
             });
         });
+    },
+
+    getEmployeeAccount: (req, res) => {
+        const body = req.body;
+        getEmployeeAccount(body, (err, result) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        })
     },
     updateAccount: (req, res) => {
         const body = req.body;

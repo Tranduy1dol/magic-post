@@ -1,6 +1,6 @@
-const office = require("../model/office.model");
+const office = require('../model/office.model');
 
-module.export = {
+module.exports = {
     //create office by name, address and link to an manager, warehouse -> director
     createOffice: (data, callback) => {
         const Office = new office({

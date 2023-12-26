@@ -22,6 +22,14 @@ const accountSchema = new mongoose.Schema({
     role: { 
         type: String,
         require: true,
+    },
+    office: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'office'
+    },
+    warehouse: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'warehouse'
     }
 })
 

@@ -33,8 +33,8 @@ app.listen(process.env.APP_PORT, function() {
 
 //build api -> almost done
 //build CRUD -> done
-//build analyst
-//build middleware
+//build analystn -> done
+//build middleware -> almost done
 //test feature and handle error
 //connect with front-end
 //deploy

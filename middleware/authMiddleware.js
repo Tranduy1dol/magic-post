@@ -1,8 +1,8 @@
 module.exports = {
     checkRole: (allowedRole) => {
         return (req, res, next) => {
-            const role = req.account.role;
-            if(allowedRole.include(role)) {
+            const role = req.body.role;
+            if(allowedRole.includes(role)) {
                 next();
             } else {
                 res.status(403).json({
@@ -11,8 +11,9 @@ module.exports = {
             }
         }
     },
-    checkAccess: () => {
-        
+    checkAccess: (req, res, next) => {
+        console.log(req.body);
+        next();
     }
 }
 

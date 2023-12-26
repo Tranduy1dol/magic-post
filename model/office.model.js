@@ -19,4 +19,4 @@ const officeSchema = new mongoose.Schema({
     }
 });
 
-module.export = mongoose.model('office', officeSchema);
+module.exports = mongoose.model('office', officeSchema);

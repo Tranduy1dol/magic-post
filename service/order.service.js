@@ -53,7 +53,9 @@ module.exports = {
     },
 
     //print order information -> employee
-    printOrder: () => {},
+    printOrder: (data, callback) => {
+
+    },
 
     //update order information -> employee
     updateOrder: (data, callback) => {

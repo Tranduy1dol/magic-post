@@ -15,7 +15,7 @@ const transactionSchema = new mongoose.Schema({
         default: ''
     },
     timeStamp: Date,
-    //status: storing, transporting, office
+    //status: storing, transporting, office(this mean this order is transported to target office and can be picked up by customer)
     status: String
 });
 

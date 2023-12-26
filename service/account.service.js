@@ -9,7 +9,21 @@ module.exports = {
             password: data.password,
             phone: data.phone,
             role: data.role,
-        })
+        });
+        
+        //if employee or director works in an office
+        if(data.office) {
+            Account.push({
+                office: data.office
+            });
+        }
+
+        //if employee or manager works in a warehouse
+        if(data.warehouse) {
+            Account.push({
+                warehouse: data.warehouse
+            });
+        }
         Account.save()
             .then((result) => {
                 return callback(null, result);
@@ -19,9 +33,9 @@ module.exports = {
             })
     },
 
-    //show all account -> director, manager
-    getAccount: (callback) => {
-        account.find({})
+    //show manager account -> director
+    getManagerAccount: (callback) => {
+        account.find({role: 'manager'})
             .then((result) => {
                 return callback(null, result);
             })
@@ -30,7 +44,29 @@ module.exports = {
             })
     },
 
-    //show account by email, phone number -> director, manager
+    //show employee account in office/warehouse -> manager
+    getEmployeeAccount: (data, callback) => {
+        let filter = [];
+        if(data.warehouse_id) {
+            filter.push({
+                pointID: data.warehouse_id
+            });
+        }
+        if(data.office_id) {
+            filter.push({
+                pointID: data.office_id
+            });
+        }
+        account.find(filter)
+            .then((results) => {
+                return callback(null, results);
+            })
+            .catch((error) => {
+                return callback(error);
+            })
+    },
+
+    //find account by email, phone number -> director, manager
     getAccountByUsername: (data, callback) => {
         const filter = {
             $or: [

@@ -3,7 +3,7 @@ const { createOffice,
         getOfficeByInfor,
         updateOffice,
         deleteOffice
-}   = require("../service/office.service");
+}   = require('../service/office.service');
 
 module.exports = {
     createOffice: (req, res) => {
@@ -22,7 +22,7 @@ module.exports = {
             });
         });
     },
-    getOffice:(req, res) => {
+    getOffice: (req, res) => {
         getOffice((err, results) => {
             if(err) {
                 console.log(err);
