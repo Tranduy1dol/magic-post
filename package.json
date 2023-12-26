@@ -1,0 +1,34 @@
+{
+  "name": "int3306-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tran-Duy-K67JUET/INT3306-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tran-Duy-K67JUET/INT3306-1/issues"
+  },
+  "homepage": "https://github.com/Tran-Duy-K67JUET/INT3306-1#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.1",
+    "node": "^21.1.0",
+    "redis": "^4.6.11"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
