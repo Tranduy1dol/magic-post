@@ -1,0 +1,44 @@
+.login,
+.image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('https://bootstrapious.com/i/snippets/sn-page-split/bg.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.field i {
+    position: absolute;
+    top: 50%;
+    font-size: 18px;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.field .error-icon {
+    right: 15px;
+    color: #dc3545;
+}
+
+.field {
+    position: relative;
+}
+
+.field .error {
+    display: none;
+}
+
+form .error .error{
+    content: "\f12a";
+    font-family: FontAwesome, serif;
+    display: block;
+    position: absolute;
+    color: #c80000;
+    font-size: 16px;
+    top: 50%;
+    right: 18px;
+}
+
+
