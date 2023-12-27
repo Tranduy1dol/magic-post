@@ -1,7 +1,7 @@
 module.exports = {
     checkRole: (allowedRole) => {
         return (req, res, next) => {
-            const role = req.body.role;
+            const role = req.body.payload.role;
             if(allowedRole.includes(role)) {
                 next();
             } else {
@@ -12,8 +12,36 @@ module.exports = {
         }
     },
     checkAccess: (req, res, next) => {
-        console.log(req.body);
-        next();
+        console.log('body ', req.body);
+
+        const payload = req.body.payload;
+        if(payload.role === 'director') {
+            next();
+        }
+
+        if(payload.role === 'manager' || payload.role === 'employee') {
+            const filter = {
+                $or: [
+                    {warehouse: req.body.warehouse},
+                    {office: req.body.office}
+                ]
+            }
+            account.find(filter)
+                .then((results) => {
+                    if(results._id != payload._id) {
+                        return res.json({
+                            error: "you do not have permission to access this data"
+                        });
+                    } else {
+                        next();
+                    }
+                })
+                .catch((error) => {
+                    return res.json({
+                        error: error
+                    });
+                });
+        }
     }
 }
 
