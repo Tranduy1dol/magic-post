@@ -9,21 +9,11 @@ module.exports = {
             password: data.password,
             phone: data.phone,
             role: data.role,
+            office: data.office,
+            warehouse: data.warehouse
         });
         
-        //if employee or director works in an office
-        if(data.office) {
-            Account.push({
-                office: data.office
-            });
-        }
 
-        //if employee or manager works in a warehouse
-        if(data.warehouse) {
-            Account.push({
-                warehouse: data.warehouse
-            });
-        }
         Account.save()
             .then((result) => {
                 return callback(null, result);
@@ -46,17 +36,13 @@ module.exports = {
 
     //show employee account in office/warehouse -> manager
     getEmployeeAccount: (data, callback) => {
-        let filter = [];
-        if(data.warehouse_id) {
-            filter.push({
-                pointID: data.warehouse_id
-            });
+        const filter = {
+            $or: [
+                {warehouse: data.warehouse},
+                {office: data.office}
+            ]
         }
-        if(data.office_id) {
-            filter.push({
-                pointID: data.office_id
-            });
-        }
+        console.log('filter ',filter);
         account.find(filter)
             .then((results) => {
                 return callback(null, results);

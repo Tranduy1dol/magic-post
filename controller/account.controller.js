@@ -33,7 +33,7 @@ module.exports = {
                 console.log(err);
                 return;
             }
-            return res.json({
+            return res.status(200).json({
                 success: 1,
                 data: results
             });
@@ -49,7 +49,7 @@ module.exports = {
             }
             return res.json({
                 success: 1,
-                data: results
+                data: result
             });
         })
     },
@@ -110,11 +110,16 @@ module.exports = {
             if(result) {
                 results[0].password = undefined;
                 const secret = process.env.SECRET_TOKEN;
-                const jsontoken = sign({result: results}, secret, { expiresIn: '1h' });
+                let payload = {
+                    id: results[0]._id,
+                    role: results[0].role,
+                };
+                const jsontoken = sign(payload, secret, { expiresIn: '1h' });
                 return res.json({
                     success: 1,
                     message: "login successfully",
-                    token: jsontoken
+                    token: jsontoken,
+                    results: payload
                 });
             } else {
                 return res.json({
