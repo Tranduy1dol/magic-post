@@ -19,6 +19,8 @@
   "homepage": "https://github.com/Tran-Duy-K67JUET/INT3306-1#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
