@@ -21,20 +21,16 @@ app.use('/order', orderRouter);
 app.use('/transaction', transRouter);
 app.use('/customer', customerRouter);
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/views/index.html');
-})
-
 app.listen(process.env.APP_PORT, function() {
     console.log("good " + process.env.APP_PORT);
 })
 
 
 
-//build api -> almost done
+//build api -> done
 //build CRUD -> done
-//build analystn -> done
-//build middleware -> almost done
-//test feature and handle error
-//connect with front-end
-//deploy
+//build analysts -> done
+//build middleware -> done
+//test feature and handle error -> not yet
+//connect with front-end -> on going
+//deploy -> not necessary
