@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhân Viên Điểm Tập Kết</title>
+    <style>
+        /* Thêm các quy tắc CSS tùy thuộc vào thiết kế của bạn */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Nhân Viên Điểm Tập Kết</h1>
+</header>
+
+<section>
+    <h2>Xác Nhận Hàng Đi từ Điểm Giao Dịch Chuyển Đến</h2>
+    <form>
+        <!-- Các trường thông tin đơn hàng -->
+        <label for="confirmOutgoingParcelId">ID Đơn Hàng:</label>
+        <input type="text" id="confirmOutgoingParcelId" required>
+
+        <button type="button" onclick="confirmOutgoingParcel()">Xác Nhận Hàng Đi</button>
+    </form>
+</section>
+
+<section>
+    <h2>Tạo Đơn Chuyển Hàng Đến Điểm Tập Kết Đích</h2>
+    <form>
+        <!-- Các trường thông tin đơn hàng -->
+        <label for="createIncomingParcelId">ID Đơn Hàng:</label>
+        <input type="text" id="createIncomingParcelId" required>
+
+        <!-- Các trường thông tin điểm giao dịch đích -->
+        <label for="destinationBranch">Điểm Giao Dịch Đích:</label>
+        <input type="text" id="destinationBranch" required>
+
+        <button type="button" onclick="createIncomingParcel()">Tạo Đơn Chuyển Hàng Đến</button>
+    </form>
+</section>
+
+<section>
+    <h2>Xác Nhận Hàng Nhận từ Điểm Tập Kết Khác</h2>
+    <form>
+        <!-- Các trường thông tin đơn hàng -->
+        <label for="confirmIncomingParcelId">ID Đơn Hàng:</label>
+        <input type="text" id="confirmIncomingParcelId" required>
+
+        <button type="button" onclick="confirmIncomingParcel()">Xác Nhận Hàng Nhận</button>
+    </form>
+</section>
+
+<section>
+    <h2>Tạo Đơn Chuyển Hàng Đến Điểm Giao Dịch Đích</h2>
+    <form>
+        <!-- Các trường thông tin đơn hàng -->
+        <label for="createOutgoingParcelId">ID Đơn Hàng:</label>
+        <input type="text" id="createOutgoingParcelId" required>
+
+        <!-- Các trường thông tin điểm giao dịch đích -->
+        <label for="destinationBranch">Điểm Giao Dịch Đích:</label>
+        <input type="text" id="destinationBranch" required>
+
+        <button type="button" onclick="createOutgoingParcel()">Tạo Đơn Chuyển Hàng Đến</button>
+    </form>
+</section>
+
+<script src="employee-scripts.js"></script>
+</body>
+</html>
